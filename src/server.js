@@ -4,9 +4,10 @@ import logger from 'morgan'
 import createError from 'http-errors'
 // import { router } from './routes/router.js'
 import { connectDB } from './config/mongoose.js'
+import { container } from './config/bootstrap.js'
 
 try {
-  await connectDB(process.env.DB_CONNECTION_STRING)
+  await connectDB(container.resolve('ConnectionString'))
 
   const app = express()
 
