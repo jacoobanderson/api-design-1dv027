@@ -2,12 +2,12 @@ import express from 'express'
 import helmet from 'helmet'
 import logger from 'morgan'
 import createError from 'http-errors'
-// import { router } from './routes/router.js'
+import { router } from './routes/router.js'
 import { connectDB } from './config/mongoose.js'
-import { container } from './config/bootstrap.js'
+// import { container } from './config/bootstrap.js'
 
 try {
-  await connectDB(container.resolve('ConnectionString'))
+  await connectDB(process.env.DB_CONNECTION_STRING)
 
   const app = express()
 
@@ -21,7 +21,7 @@ try {
   app.use(express.json())
 
   // Register routes.
-  //   app.use('/', router)
+  app.use('/', router)
 
   // Error handler.
   app.use(function (err, req, res, next) {
