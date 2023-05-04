@@ -55,7 +55,8 @@ export class CatchController {
    */
   async getSingleCatch (req, res, next) {
     try {
-
+        const singleCatch = await Catch.findById(req.params.id)
+        res.status(200).json(singleCatch)
     } catch (error) {
       next(error)
     }
@@ -69,9 +70,7 @@ export class CatchController {
    */
   async updateCatch (req, res, next) {
     try {
-        console.log('test')
       const id = req.params.id
-      console.log(id)
       const catchToUpdate = await Catch.findById(id)
 
       const newCatchData = {
@@ -84,6 +83,7 @@ export class CatchController {
         length: req.body.length,
         imageUrl: req.body.imageUrl
       }
+
       for (const [key, value] of Object.entries(newCatchData)) {
         if (value !== undefined) {
           catchToUpdate[key] = value
