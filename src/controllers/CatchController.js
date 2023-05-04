@@ -105,7 +105,9 @@ export class CatchController {
    */
   async deleteCatch (req, res, next) {
     try {
-
+        const id = req.params.id
+        await Catch.findByIdAndDelete(id)
+        res.status(200).json({ message: 'The catch has successfully been deleted.' })
     } catch (error) {
       next(error)
     }
