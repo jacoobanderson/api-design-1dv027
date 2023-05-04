@@ -6,6 +6,7 @@ import { Catch } from '../models/Catch.js'
  */
 export class CatchController {
   /**
+   * Gets all the catches.
    *
    * @param req
    * @param res
@@ -21,6 +22,7 @@ export class CatchController {
   }
 
   /**
+   * Creates a catch.
    *
    * @param req
    * @param res
@@ -48,6 +50,7 @@ export class CatchController {
   }
 
   /**
+   * Gets a single catch.
    *
    * @param req
    * @param res
@@ -55,14 +58,15 @@ export class CatchController {
    */
   async getSingleCatch (req, res, next) {
     try {
-        const singleCatch = await Catch.findById(req.params.id)
-        res.status(200).json(singleCatch)
+      const singleCatch = await Catch.findById(req.params.id)
+      res.status(200).json(singleCatch)
     } catch (error) {
       next(error)
     }
   }
 
   /**
+   * Updates a single catch.
    *
    * @param req
    * @param res
@@ -98,6 +102,7 @@ export class CatchController {
   }
 
   /**
+   * Deletes a single catch.
    *
    * @param req
    * @param res
@@ -105,9 +110,9 @@ export class CatchController {
    */
   async deleteCatch (req, res, next) {
     try {
-        const id = req.params.id
-        await Catch.findByIdAndDelete(id)
-        res.status(200).json({ message: 'The catch has successfully been deleted.' })
+      const id = req.params.id
+      await Catch.findByIdAndDelete(id)
+      res.status(200).json({ message: 'The catch has successfully been deleted.' })
     } catch (error) {
       next(error)
     }
