@@ -5,6 +5,6 @@ export const router = express.Router()
 
 const controller = new UserController()
 
-router.post('/login', (req, res, next) => controller.login(req, res, next))
+router.post('/sessions', (req, res, next) => controller.login(req, res, next))
 
-router.post('/register', (req, res, next) => controller.register(req, res, next))
+router.post('/', (req, res, next) => controller.register(req, res, next))
