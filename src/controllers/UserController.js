@@ -27,8 +27,6 @@ export class UserController {
         expiresIn: process.env.ACCESS_TOKEN_LIFE
       })
 
-      console.log(accessToken)
-
       res
         .status(201)
         .json({
