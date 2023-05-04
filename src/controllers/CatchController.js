@@ -1,5 +1,7 @@
 import createError from 'http-errors'
 import { Catch } from '../models/Catch.js'
+import { Webhook } from '../models/Webhook.js'
+import fetch from 'node-fetch'
 
 /**
  * Encapsulates a controller.
@@ -43,9 +45,29 @@ export class CatchController {
       const newCatch = new Catch(catchData)
       await newCatch.save()
 
+      this.#notifyWebhookUrls(newCatch)
+
       res.status(201).json(catchData)
     } catch (error) {
       next(error)
+    }
+  }
+
+  /**
+   *
+   * @param newCatch
+   */
+  async #notifyWebhookUrls (newCatch) {
+    const hooks = await Webhook.find({})
+
+    for (const subscriber of hooks) {
+      fetch(subscriber.url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCatch)
+      })
     }
   }
 
