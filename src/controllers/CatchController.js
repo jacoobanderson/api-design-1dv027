@@ -2,6 +2,7 @@ import createError from 'http-errors'
 import { Catch } from '../models/Catch.js'
 import { Webhook } from '../models/Webhook.js'
 import fetch from 'node-fetch'
+import { linksAddCatch, linksAllCatches, linksDeleteCatch, linksSingleCatch, linksUpdateCatch } from '../utils/utils.js'
 
 /**
  * Encapsulates a controller.
@@ -17,7 +18,7 @@ export class CatchController {
   async getAllCatches (req, res, next) {
     try {
       const catches = await Catch.find({})
-      res.status(200).json(catches)
+      res.status(200).json({ data: catches, links: linksAllCatches() })
     } catch (error) {
       next(error)
     }
@@ -47,7 +48,7 @@ export class CatchController {
 
       this.#notifyWebhookUrls(newCatch)
 
-      res.status(201).json(catchData)
+      res.status(201).json({ data: catchData, links: linksAddCatch() })
     } catch (error) {
       next(error)
     }
@@ -81,7 +82,7 @@ export class CatchController {
   async getSingleCatch (req, res, next) {
     try {
       const singleCatch = await Catch.findById(req.params.id)
-      res.status(200).json(singleCatch)
+      res.status(200).json({ data: singleCatch, links: linksSingleCatch() })
     } catch (error) {
       next(error)
     }
@@ -117,7 +118,7 @@ export class CatchController {
       }
 
       await catchToUpdate.save()
-      res.status(200).json(catchToUpdate)
+      res.status(200).json({ data: catchToUpdate, links: linksUpdateCatch() })
     } catch (error) {
       next(error)
     }
@@ -134,7 +135,7 @@ export class CatchController {
     try {
       const id = req.params.id
       await Catch.findByIdAndDelete(id)
-      res.status(200).json({ message: 'The catch has successfully been deleted.' })
+      res.status(200).json({ message: 'The catch has successfully been deleted.', links: linksDeleteCatch() })
     } catch (error) {
       next(error)
     }
