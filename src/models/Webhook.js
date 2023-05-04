@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const schema = new mongoose.Schema(
   {
     username: {
-      type: Number
+      type: String
     },
     url: {
       type: String
@@ -31,4 +31,4 @@ schema.virtual('id').get(function () {
   return this._id.toHexString()
 })
 
-export const Catch = mongoose.model('Webhooks', schema)
+export const Webhook = mongoose.model('Webhook', schema)

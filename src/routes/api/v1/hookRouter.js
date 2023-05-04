@@ -1,7 +1,7 @@
 import express from 'express'
-import { HookController } from '../../../controllers/HookController.js'
 import jwt from 'jsonwebtoken'
 import createError from 'http-errors'
+import { HookController } from '../../../controllers/HookController.js'
 
 export const router = express.Router()
 
