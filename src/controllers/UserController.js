@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import createError from 'http-errors'
 import { User } from '../models/User.js'
+import { linksLogin, linksRegister } from '../utils/utils.js'
 
 /**
  * Encapsulates a controller.
@@ -30,7 +31,7 @@ export class UserController {
       res
         .status(201)
         .json({
-          access_token: accessToken
+          access_token: accessToken, links: linksLogin()
         })
     } catch (error) {
       const err = createError(401)
@@ -56,7 +57,7 @@ export class UserController {
 
       res
         .status(201)
-        .json({ id: user.id })
+        .json({ id: user.id, links: linksRegister() })
     } catch (error) {
       console.log(error)
       let err = error

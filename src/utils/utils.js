@@ -12,12 +12,12 @@ export function linksForEntry () {
       description: 'Starting point of the API'
     },
     {
-      href: '/api/v1/users/sessions',
+      href: '/api/v1/users',
       type: 'POST',
       description: 'Register your account.'
     },
     {
-      href: '/api/v1/users',
+      href: '/api/v1/users/sessions',
       type: 'POST',
       description: 'Login with your username and password.'
     },
@@ -225,6 +225,74 @@ export function linksDeleteCatch () {
       href: '/api/v1/catches',
       type: 'GET',
       description: 'Get all catches.'
+    }
+  ]
+}
+
+/**
+ * Links for delete catches response.
+ *
+ * @returns {Array} All the links.
+ */
+export function linksLogin () {
+  return [
+    {
+      rel: 'self',
+      href: '/api/v1/users/sessions',
+      type: 'POST',
+      description: 'Login with your username and password.'
+    },
+    {
+      href: '/api/v1/users',
+      type: 'POST',
+      description: 'Register your account.'
+    },
+    {
+      rel: 'self',
+      href: '/api/v1/catches/:id',
+      type: 'DELETE',
+      description: 'Delete a catch.'
+    },
+    {
+      href: '/api/v1/catches/:id',
+      type: 'PUT',
+      description: 'Update a catch.'
+    },
+    {
+      href: '/api/v1/catches/:id',
+      type: 'GET',
+      description: 'Get a single catch'
+    },
+    {
+      href: '/api/v1/catches',
+      type: 'POST',
+      description: 'Add a new catch.'
+    },
+    {
+      href: '/api/v1/catches',
+      type: 'GET',
+      description: 'Get all catches.'
+    }
+  ]
+}
+
+/**
+ * Links for delete catches response.
+ *
+ * @returns {Array} All the links.
+ */
+export function linksRegister () {
+  return [
+    {
+      rel: 'self',
+      href: '/api/v1/users',
+      type: 'POST',
+      description: 'Register your account.'
+    },
+    {
+      href: '/api/v1/users/sessions',
+      type: 'POST',
+      description: 'Login with your username and password.'
     }
   ]
 }

@@ -6,7 +6,7 @@ import { linksForEntry } from '../../../utils/utils.js'
 
 export const router = express.Router()
 
-router.get('/', (req, res) => res.json({ message: 'Hooray! Welcome to version 1 of this very simple RESTful API!', links: linksForEntry() }))
+router.get('/', (req, res) => res.json({ message: 'Hooray! Welcome to version 1 of this RESTful API', links: linksForEntry() }))
 router.use('/users', userRouter)
 router.use('/catches', catchRouter)
 router.use('/webhooks', hookRouter)
