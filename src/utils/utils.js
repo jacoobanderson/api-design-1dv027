@@ -230,7 +230,7 @@ export function linksDeleteCatch () {
 }
 
 /**
- * Links for delete catches response.
+ * Links for login.
  *
  * @returns {Array} All the links.
  */
@@ -277,7 +277,7 @@ export function linksLogin () {
 }
 
 /**
- * Links for delete catches response.
+ * Links for register response.
  *
  * @returns {Array} All the links.
  */
