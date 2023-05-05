@@ -1,5 +1,6 @@
 import { Catch } from '../models/Catch.js'
 import { Webhook } from '../models/Webhook.js'
+import createError from 'http-errors'
 import fetch from 'node-fetch'
 import { linksAddCatch, linksAllCatches, linksDeleteCatch, linksSingleCatch, linksUpdateCatch } from '../utils/utils.js'
 
@@ -84,7 +85,7 @@ export class CatchController {
       const singleCatch = await Catch.findById(req.params.id)
       res.status(200).json({ data: singleCatch, links: linksSingleCatch() })
     } catch (error) {
-      next(error)
+      next(createError(404, 'The catch with that id could not be found.'))
     }
   }
 
