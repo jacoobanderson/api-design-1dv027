@@ -1,4 +1,3 @@
-import createError from 'http-errors'
 import { Catch } from '../models/Catch.js'
 import { Webhook } from '../models/Webhook.js'
 import fetch from 'node-fetch'
@@ -11,9 +10,9 @@ export class CatchController {
   /**
    * Gets all the catches.
    *
-   * @param req
-   * @param res
-   * @param next
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
    */
   async getAllCatches (req, res, next) {
     try {
@@ -27,9 +26,9 @@ export class CatchController {
   /**
    * Creates a catch.
    *
-   * @param req
-   * @param res
-   * @param next
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
    */
   async createCatch (req, res, next) {
     try {
@@ -55,8 +54,9 @@ export class CatchController {
   }
 
   /**
+   * Notifies the subscribers of the webhook.
    *
-   * @param newCatch
+   * @param {object} newCatch The catch that should be notified.
    */
   async #notifyWebhookUrls (newCatch) {
     const hooks = await Webhook.find({})
@@ -75,9 +75,9 @@ export class CatchController {
   /**
    * Gets a single catch.
    *
-   * @param req
-   * @param res
-   * @param next
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
    */
   async getSingleCatch (req, res, next) {
     try {
@@ -91,9 +91,9 @@ export class CatchController {
   /**
    * Updates a single catch.
    *
-   * @param req
-   * @param res
-   * @param next
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
    */
   async updateCatch (req, res, next) {
     try {
@@ -127,9 +127,9 @@ export class CatchController {
   /**
    * Deletes a single catch.
    *
-   * @param req
-   * @param res
-   * @param next
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
    */
   async deleteCatch (req, res, next) {
     try {

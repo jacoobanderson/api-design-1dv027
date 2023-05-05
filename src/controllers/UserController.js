@@ -33,7 +33,6 @@ export class UserController {
           access_token: accessToken
         })
     } catch (error) {
-        console.log(error)
       const err = createError(401)
       next(err)
     }
