@@ -34,6 +34,7 @@ export class UserController {
           access_token: accessToken, links: linksLogin()
         })
     } catch (error) {
+        console.log(error)
       const err = createError(401)
       next(err)
     }
